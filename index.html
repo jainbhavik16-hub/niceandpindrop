@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NiCE + Pindrop GTM Strategy Brief · Vieu · October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1A1818;
+    --ink-mid:   #3D3A3A;
+    --ink-soft:  #7A7575;
+    --rule:      #E2DFDC;
+    --paper:     #F8F6F3;
+    --white:     #FFFFFF;
+    --accent:    #7744FF;
+    --accent-lt: #EDE8FF;
+    --gold:      #B8892A;
+    --gold-lt:   #FDF5E4;
+    --red:       #C0392B;
+    --green:     #1D7A4A;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
+    --max:   860px;
+  }
+
+  html { font-size: 16px; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  .page { max-width: var(--max); margin: 0 auto; padding: 0 40px 80px; }
+
+  /* Cover */
+  .cover { padding: 72px 0 56px; border-bottom: 1px solid var(--ink); margin-bottom: 56px; }
+  .cover-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .cover-eyebrow::before { content: ''; display: block; width: 24px; height: 1.5px; background: var(--accent); }
+  .cover-title { font-family: var(--serif); font-size: clamp(40px, 5.6vw, 60px); line-height: 1.07; color: var(--ink); margin-bottom: 10px; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-sub { font-size: 17px; color: var(--ink-mid); font-weight: 300; margin-bottom: 36px; max-width: 580px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover-meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .cover-meta-value { font-size: 13px; font-weight: 500; color: var(--ink); }
+
+  /* Sections */
+  .section { margin-bottom: 64px; }
+  .section + .section { padding-top: 48px; border-top: 1px solid var(--rule); }
+  .section-title { font-family: var(--serif); font-size: 28px; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .section-intro { font-size: 15px; color: var(--ink-mid); line-height: 1.7; max-width: 680px; margin-bottom: 28px; }
+
+  /* Stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 40px; }
+  .stat-cell { background: var(--white); padding: 24px 22px; }
+  .stat-num { font-family: var(--serif); font-size: 34px; line-height: 1; color: var(--accent); margin-bottom: 6px; }
+  .stat-label { font-size: 12px; font-weight: 500; color: var(--ink-soft); line-height: 1.4; }
+
+  /* Pull quote */
+  .pull-quote { border-left: 3px solid var(--accent); padding: 16px 24px; background: var(--accent-lt); border-radius: 0 6px 6px 0; margin: 28px 0; }
+  .pull-quote p { font-family: var(--serif); font-size: 18px; line-height: 1.5; color: var(--ink); font-style: italic; }
+  .pull-quote cite { display: block; margin-top: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-style: normal; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cards.three { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 20px; }
+  .card-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .card-title { font-family: var(--serif); font-size: 17px; line-height: 1.25; margin-bottom: 10px; color: var(--ink); }
+  .card-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+  .card.accent-top { border-top: 3px solid var(--accent); }
+
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* Tags */
+  .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tag { font-size: 11.5px; font-weight: 500; padding: 4px 12px; border-radius: 20px; background: var(--white); border: 1px solid var(--rule); color: var(--ink-mid); }
+  .tag.tier1 { background: var(--accent); color: var(--white); border-color: var(--accent); font-weight: 600; }
+  .tag.tier2 { background: var(--accent-lt); color: var(--accent); border-color: var(--accent); }
+
+  /* Segmented sub-labels */
+  .sub-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin: 18px 0 4px; }
+  .segment { background: var(--white); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 8px; padding: 22px 24px; margin-bottom: 16px; }
+  .segment-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .segment-kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); background: var(--accent-lt); padding: 3px 10px; border-radius: 20px; }
+  .segment-title { font-family: var(--serif); font-size: 19px; color: var(--ink); }
+  .side-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-lt); padding: 2px 9px; border-radius: 20px; margin-left: 8px; white-space: nowrap; vertical-align: middle; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .data-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--ink); padding: 10px 14px; border: none; }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--ink-mid); line-height: 1.55; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: var(--white); }
+  .data-table tr:nth-child(odd) td { background: var(--paper); }
+  .data-table td strong { color: var(--ink); font-weight: 600; }
+
+  /* Priority list */
+  .priority-list { counter-reset: priority; list-style: none; }
+  .priority-list li { counter-increment: priority; display: grid; grid-template-columns: 88px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+  .priority-list li:last-child { border-bottom: none; }
+  .priority-list li::before { content: counter(priority, decimal-leading-zero); font-family: var(--serif); font-size: 72px; color: var(--accent); line-height: 1; margin-top: 2px; }
+  .priority-item-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .priority-item-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+  /* Vieu dark box */
+  .vieu-box { background: var(--ink); border-radius: 10px; padding: 32px 36px; color: var(--white); }
+  .vieu-box-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .vieu-box h3 { font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 16px; line-height: 1.3; }
+  .vieu-box > p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 24px; }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .pillar { border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 18px 16px; text-align: center; }
+  .pillar-text { font-size: 13.5px; font-weight: 600; color: var(--white); line-height: 1.35; }
+
+  /* Delivery matrix */
+  .del-matrix-wrap { position: relative; margin-top: 4px; }
+  .del-matrix { width: 100%; border-collapse: collapse; }
+  .del-matrix th { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .del-matrix th.label-col { text-align: left; width: 60%; color: rgba(255,255,255,0.45); }
+  .del-matrix th.delivers-col { color: var(--accent); border-bottom: 2px solid var(--accent); }
+  .del-matrix th.access-col  { color: rgba(255,255,255,0.45); }
+  .del-matrix td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: middle; }
+  .del-matrix tr:last-child td { border-bottom: none; }
+  .del-matrix td.label-col { padding-left: 0; }
+  .del-matrix td.icon-col  { text-align: center; width: 20%; }
+  .row-num { display: inline-block; background: rgba(119,68,255,0.35); color: var(--accent); font-size: 10px; font-weight: 700; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; margin-right: 10px; flex-shrink: 0; }
+  .row-label-wrap { display: flex; align-items: flex-start; }
+  .row-label-inner { display: flex; flex-direction: column; }
+  .row-title { font-size: 13.5px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .row-desc  { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+  .mark-delivers { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; border: 1.5px solid var(--accent); background: rgba(119,68,255,0.2); }
+  .mark-delivers svg { width: 12px; height: 12px; stroke: var(--accent); stroke-width: 2.5; fill: none; }
+
+  /* Deliverable rows */
+  .del-row { display:grid; grid-template-columns:160px 1fr; border:1px solid var(--rule); border-top:none; overflow:hidden; }
+  .del-row.first { border-top:1px solid var(--rule); border-radius:8px 8px 0 0; }
+  .del-row.last { border-radius:0 0 8px 8px; }
+  .del-row .dk { background:var(--accent); padding:20px 18px; display:flex; flex-direction:column; justify-content:center; }
+  .del-row .dk .lab { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+  .del-row .dk .val { font-family:var(--serif); font-size:17px; color:#fff; line-height:1.2; }
+  .del-row .dk .when { font-size:11px; color:rgba(255,255,255,0.65); margin-top:8px; font-weight:600; }
+  .del-row .db { background:var(--white); padding:20px 22px; }
+  .del-row .db .h { font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .del-row .db .p { font-size:13px; color:var(--ink-mid); line-height:1.65; }
+
+  /* Footer */
+  .doc-footer { padding-top: 36px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-top: 64px; }
+  .footer-left { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+  .footer-vieu { font-size: 22px; font-family: var(--serif); color: var(--ink-soft); }
+
+  .note { font-size: 11px; color: var(--ink-soft); line-height: 1.5; margin-top: 10px; }
+
+  @media print { body { background: white; } .page { padding: 0 0 48px; } .cover { padding: 48px 0 40px; } }
+  @media (max-width: 640px) {
+    .page { padding: 0 20px 60px; }
+    .cards, .cards.three, .two-col, .pillars { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: 1fr; }
+    .cover-title { font-size: 34px; }
+    .del-row, .del-row.first, .del-row.last { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- NAV -->
+  <nav style="position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid var(--rule); padding:12px 40px; display:flex; gap:28px; flex-wrap:wrap; max-width:100%;">
+    <a href="#s01" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); text-decoration:none;">Welcome</a>
+    <a href="#s02" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none;">Market Moment</a>
+    <a href="#s03" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none;">Your Business</a>
+    <a href="#s05" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none;">Who You Sell To</a>
+    <a href="#s07" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none;">Getting Started</a>
+  </nav>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-eyebrow">GTM Strategy Brief</div>
+    <h1 class="cover-title">NiCE + Pindrop<br><em>Go-to-Market</em><br>Strategy</h1>
+    <p class="cover-sub">A go-to-market intelligence brief powered by Vieu, built on 9B executive relationships to accelerate warm access to the UK financial services institutions that are the best fit for a combined offer of <strong>native voice authentication, fraud and deepfake detection inside NiCE CXone</strong>.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><span class="cover-meta-label">Prepared by</span><span class="cover-meta-value">Vieu</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Prepared for</span><span class="cover-meta-value">NiCE &amp; Pindrop</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Date</span><span class="cover-meta-value">October 2026</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Engagement</span><span class="cover-meta-value">AWS BOX · Tier 1 · All Services</span></div>
+    </div>
+  </div>
+
+  <!-- 01 WELCOME -->
+  <div class="section" id="s01">
+    <h2 class="section-title">Welcome to the<br><em>AWS BOX Program</em></h2>
+    <p class="section-intro">You've been selected for the AWS Business Outcomes eXcelerator, with Vieu as your go-to-market partner. As a <strong>Tier 1</strong> account you get the full Vieu stack — warm-path intelligence into the UK financial institutions that matter for NiCE and Pindrop.</p>
+
+    <!-- Program banner -->
+    <div style="background: var(--ink); border-radius: 10px; padding: 28px 32px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">The Program</div>
+        <div style="font-family:var(--serif); font-size:18px; color:#fff; line-height:1.25; margin-bottom:6px;">AWS BOX · Tier 1</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.5;">Full-service engagement with access to every Vieu capability.</div>
+      </div>
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">The Accounts</div>
+        <div style="font-family:var(--serif); font-size:18px; color:#fff; line-height:1.25; margin-bottom:6px;">NiCE + Pindrop</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.5;">Joint co-sell engagement — CXone + Pindrop voice security.</div>
+      </div>
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">The Goal</div>
+        <div style="font-family:var(--serif); font-size:18px; color:#fff; line-height:1.25; margin-bottom:6px;">Warm pipeline</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.5;">Booked meetings with the right UK FSI decision-makers.</div>
+      </div>
+    </div>
+
+    <!-- Deliverables -->
+    <p class="sub-label" style="margin-bottom:12px;">What You Get</p>
+    <div style="margin-bottom:36px;">
+      <div class="del-row first">
+        <div class="dk"><div class="lab">Deliverable 01</div><div class="val">Account Plans</div><div class="when">Volume confirmed at kickoff</div></div>
+        <div class="db"><div class="h">Full-fledged account plans with strategic priorities</div><div class="p">Complete account plan fully enriched with corporate sentiment, strategic opportunities, stakeholders, connections and org chart.</div></div>
+      </div>
+      <div class="del-row">
+        <div class="dk"><div class="lab">Deliverable 02</div><div class="val">Verified Leads</div><div class="when">Volume confirmed at kickoff</div></div>
+        <div class="db"><div class="h">Bounce-verified leads, ranked by fit</div><div class="p">Contact-verified leads across your target accounts, enriched and prioritized by fit — ready for your team to work straight into outbound.</div></div>
+      </div>
+      <div class="del-row">
+        <div class="dk"><div class="lab">Deliverable 03</div><div class="val">Decision-Makers + Warm Paths</div><div class="when">Volume confirmed at kickoff</div></div>
+        <div class="db"><div class="h">Senior buyers with named warm paths</div><div class="p">Priority buying-committee decision-makers, each with a named warm path from your NiCE and Pindrop networks.</div></div>
+      </div>
+      <div class="del-row last">
+        <div class="dk"><div class="lab">Deliverable 04</div><div class="val">Look-alike Opportunities</div><div class="when">As surfaced</div></div>
+        <div class="db"><div class="h">High-fit accounts beyond your original list</div><div class="p">High-fit accounts that match the ICP but weren't on your list — each with fit rationale, connection paths, and verified contacts.</div></div>
+      </div>
+    </div>
+
+    <!-- Capability matrix — Tier 1, all rows delivered + accessible -->
+    <div class="vieu-box" style="margin-top:36px;">
+      <div class="vieu-box-label">Vieu · AWS BOX · Tier 1 (All Services)</div>
+      <h3>Warm paths into the accounts that matter, backed by the full intelligence stack.</h3>
+      <p>Vieu maps your extended network — NiCE and Pindrop — against your target list to surface the warmest paths to decision-makers. As Tier 1, every capability below is both delivered by Vieu and available to your team in the platform.</p>
+
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-text">Fast track decision maker access</div></div>
+        <div class="pillar"><div class="pillar-text">Strategic account intelligence</div></div>
+        <div class="pillar"><div class="pillar-text">Stakeholder intelligence</div></div>
+      </div>
+
+      <div class="del-matrix-wrap">
+      <table class="del-matrix">
+        <thead>
+          <tr><th class="label-col"></th><th class="delivers-col">Vieu Delivers</th><th class="access-col" style="color:var(--accent);border-bottom:2px solid var(--accent);">Your Access</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">01</span><div class="row-label-inner"><span class="row-title">Account plan</span><span class="row-desc">Deep account POV with contextual research aligned to your sales stages</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">02</span><div class="row-label-inner"><span class="row-title">Connection paths</span><span class="row-desc">Accelerate decision maker access using your company's full network</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">03</span><div class="row-label-inner"><span class="row-title">Stakeholder map &amp; org chart</span><span class="row-desc">Know the decision makers and influencers across all buying groups</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">04</span><div class="row-label-inner"><span class="row-title">Opportunities</span><span class="row-desc">Identify trigger points where Vieu can drive outcomes for target accounts</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">05</span><div class="row-label-inner"><span class="row-title">Technographics</span><span class="row-desc">Know who's using competitor or complementary tech, and in what context</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">06</span><div class="row-label-inner"><span class="row-title">Verified contact details</span><span class="row-desc">Waterfall enrichment across multiple data vendors to maximize TAM coverage</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">07</span><div class="row-label-inner"><span class="row-title">White-glove services</span><span class="row-desc">A dedicated customer success team for anything beyond the Vieu platform's scope</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 MARKET MOMENT -->
+  <div class="section" id="s02">
+    <div style="font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Your Market Moment</div>
+    <h2 class="section-title">Here is what we found.</h2>
+    <p class="section-intro">Three forces are converging in the contact centre: AI-generated voice fraud is scaling faster than traditional attacks, contact centres are shifting toward AI agents that need a trusted identity layer, and NiCE and Pindrop now offer a native, resellable answer. NiCE answers the platform side; Pindrop answers the identity side.</p>
+
+    <div class="stat-strip">
+      <div class="stat-cell"><div class="stat-num">1,680%</div><div class="stat-label">spike in AI attacks, with Pindrop reporting no sign of it slowing<sup>1</sup></div></div>
+      <div class="stat-cell"><div class="stat-num">1 in 80</div><div class="stat-label">callers is an AI agent rather than a human, per Pindrop product data<sup>2</sup></div></div>
+      <div class="stat-cell"><div class="stat-num">10%</div><div class="stat-label">of security leaders report having deepfake-specific defenses<sup>3</sup></div></div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Know who, or what, is calling before the contact centre acts — inside the platform it already runs, and on the contract it already has."</p>
+      <cite>Vieu Account Intelligence · NiCE + Pindrop</cite>
+    </div>
+    <p class="note"><sup>1</sup> Pindrop analysis of AI fraud data, Fall 2024–Spring 2026, as published on pindrop.com. <sup>2</sup> Pindrop product data, Summer 2026, as published on pindrop.com. <sup>3</sup> Pindrop Deepfake Readiness Index, as cited on pindrop.com. Partnership details: Pindrop, "Pindrop and NiCE Partner for Native Voice Authentication and Fraud Detection in CXone," January 23, 2026 (pindrop.com). Unverified: figures are vendor-reported and global, not UK-specific. Framing is Vieu's pre-kickoff hypothesis, to validate with your team.</p>
+  </div>
+
+  <!-- 03 UNDERSTANDING YOUR BUSINESS -->
+  <div class="section" id="s03">
+    <h2 class="section-title">Our Understanding of Your Business</h2>
+    <p class="section-intro">Our pre-kickoff research into NiCE and Pindrop, from public sources — to align on what we have right and where you'll sharpen us.</p>
+
+    <div class="cards" style="margin-bottom: 24px;">
+      <div class="card accent-top">
+        <div class="card-eyebrow">NiCE · nice.com</div>
+        <div class="card-title">CXone: The Enterprise CX AI Platform</div>
+        <div class="card-body">An enterprise customer experience AI platform that orchestrates human and AI agents across voice and digital channels, with <strong>Cognigy</strong> providing the agentic AI and IVR modernization path. NiCE reports 25B+ interactions a year and 11 consecutive years as a Gartner Magic Quadrant Leader for CCaaS. Its group also includes NiCE Actimize for financial crime.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">Pindrop · pindrop.com</div>
+        <div class="card-title">Identity Trust for Real-Time Communications</div>
+        <div class="card-body">A platform built on three engines: <strong>Synthetic</strong> (Pulse and BotStopper, to spot deepfakes and AI agents), <strong>Risk</strong> (Protect, for fraud) and <strong>Authentication</strong> (Passport and VeriCall, for passive caller authentication). Pindrop states it is trusted by 14 of the top 20 banks and 5 of the top 7 life insurers.</div>
+      </div>
+    </div>
+
+    <!-- Combined opportunity -->
+    <div style="background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 22px 24px; margin-bottom: 28px;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">The NiCE + Pindrop Opportunity</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;">How it fits together</div>
+          <ul style="list-style:none; font-size:13px; color:var(--ink-mid); line-height:1.7;">
+            <li style="margin-bottom:6px; padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--green);">&#x2713;</span> On customer request, CXone routes a copy of the inbound call to Pindrop for real-time voice, device and risk analysis</li>
+            <li style="margin-bottom:6px; padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--green);">&#x2713;</span> Pindrop's agent interface embeds in CXone, so agents see authentication and fraud signals in their own workflow</li>
+            <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--green);">&#x2713;</span> A resale partnership lets customers buy Pindrop on NiCE paper within their CXone contract, extending to Cognigy AI agents</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;">The opportunity in one sentence</div>
+          <p style="font-size:13px; color:var(--ink-mid); line-height:1.7;">NiCE brings the CXone platform and Pindrop brings native voice authentication, fraud and deepfake detection — and Vieu maps the warm paths into UK financial institutions that turn that reach into booked meetings.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 04 GTM CHALLENGE -->
+  <div class="section" id="s04">
+    <h2 class="section-title">The GTM Challenge</h2>
+    <p class="section-intro">The offer is compelling — the challenge is go-to-market. Large financial institutions clear long, multi-stakeholder committees across the contact centre, fraud, information security and technology. The way through is warm access to the right leaders.</p>
+
+    <div class="two-col" style="margin-bottom:32px;">
+      <div>
+        <table class="data-table">
+          <thead><tr><th>Where It Works</th><th>Where It Stalls</th></tr></thead>
+          <tbody>
+            <tr><td>A native CXone integration with Pindrop intelligence embedded in the agent workflow</td><td>Reaching the Head of Fraud, Contact Centre and CISO, who sit in different parts of a large bank or insurer</td></tr>
+            <tr><td>Resale on NiCE paper removes the need to add Pindrop as a separate vendor</td><td>Aligning CX, fraud and security buyers on one combined evaluation</td></tr>
+            <tr><td>Cognigy plus Pindrop gives an authentication and fraud layer from AI agent to human agent</td><td>Regulated-sector procurement and long committee cycles</td></tr>
+            <tr><td>Pindrop's reference base across large banks and insurers</td><td>The partnership is new (announced January 2026), so buyers need a trusted path in to hear the joint story</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="pull-quote" style="margin-top:0"><p>"Vieu will help you turn partner momentum into pipeline."</p><cite>Vieu Account Intelligence</cite></div>
+        <p style="font-size:13px; color: var(--ink-mid); line-height:1.7; margin-top:16px;">Not generic leads — warm, context-rich introductions to the exact buying committee, fit for high-trust regulated evaluations.</p>
+        <p class="note">Unverified: the stall points are Vieu's pre-kickoff hypotheses, to validate with your team.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 05 WHO YOU SELL TO -->
+  <div class="section" id="s05">
+    <h2 class="section-title">Who You Sell To</h2>
+    <p class="section-intro"><strong>UK financial services institutions</strong> — 1,000+ employees and $100M+ revenue, with a large voice contact centre — in the UK, within the EMEA region. Two segments below, one per motion; named accounts built from your list at kickoff.</p>
+
+    <!-- SEGMENT A -->
+    <div class="segment">
+      <div class="segment-head">
+        <span class="segment-kicker">Segment A</span>
+        <span class="segment-title">Contact centre &amp; CX modernization</span>
+        <span class="side-pill">NiCE-led · CXone + Cognigy</span>
+      </div>
+      <div class="card-body">Large UK financial institutions running or replacing a contact centre platform, and moving self-service and IVR toward AI agents. Strongest fit: an existing or planned CXone footprint and an AI agent programme that needs a secure authentication layer.</div>
+      <div class="sub-label">Buyer personas</div>
+      <div class="tag-group">
+        <span class="tag tier1">Head of Contact Centre / Customer Operations</span>
+        <span class="tag tier1">Chief Customer Officer</span>
+        <span class="tag tier1">CIO / CTO</span>
+        <span class="tag tier1">Head of Digital / CX Transformation</span>
+      </div>
+      <div class="sub-label">Target segments</div>
+      <div class="tag-group">
+        <span class="tag">Retail &amp; commercial banks</span>
+        <span class="tag">Digital &amp; challenger banks</span>
+        <span class="tag">Building societies</span>
+        <span class="tag">Life &amp; general insurers</span>
+        <span class="tag">Wealth &amp; asset management</span>
+      </div>
+      <div class="sub-label">Fit signals &amp; technographics</div>
+      <div class="tag-group">
+        <span class="tag tier2">NiCE CXone (current or planned)</span>
+        <span class="tag tier2">Legacy contact centre platform</span>
+        <span class="tag tier2">Legacy IVR</span>
+        <span class="tag tier2">AI agent / agentic CX programme</span>
+        <span class="tag tier2">Cognigy interest</span>
+        <span class="tag tier2">Large inbound voice volume</span>
+      </div>
+    </div>
+
+    <!-- SEGMENT B -->
+    <div class="segment">
+      <div class="segment-head">
+        <span class="segment-kicker">Segment B</span>
+        <span class="segment-title">Fraud, authentication &amp; deepfake defense</span>
+        <span class="side-pill">Pindrop-led · Voice security</span>
+      </div>
+      <div class="card-body">Large UK financial institutions facing phone-channel fraud, synthetic voice and AI-agent traffic, and friction from knowledge-based caller authentication. Strongest fit: a high-volume voice channel and no deepfake-specific defenses in place today.</div>
+      <div class="sub-label">Buyer personas</div>
+      <div class="tag-group">
+        <span class="tag tier1">Head of Fraud / Financial Crime</span>
+        <span class="tag tier1">CISO / Head of Information Security</span>
+        <span class="tag tier1">Head of Customer Authentication / Identity</span>
+        <span class="tag tier1">Head of Contact Centre Risk</span>
+      </div>
+      <div class="sub-label">Target segments</div>
+      <div class="tag-group">
+        <span class="tag">Retail banks</span>
+        <span class="tag">Card issuers &amp; payments</span>
+        <span class="tag">Life insurers</span>
+        <span class="tag">General insurers</span>
+        <span class="tag">Wealth &amp; asset management</span>
+      </div>
+      <div class="sub-label">Fit signals &amp; technographics</div>
+      <div class="tag-group">
+        <span class="tag tier2">Phone-channel fraud losses</span>
+        <span class="tag tier2">Knowledge-based authentication today</span>
+        <span class="tag tier2">Voice cloning / deepfake concern</span>
+        <span class="tag tier2">AI agent traffic in the queue</span>
+        <span class="tag tier2">Authentication friction / handle time</span>
+        <span class="tag tier2">NiCE CXone customer</span>
+      </div>
+      <p class="note">Unverified: personas, target sub-segments and fit signals are Vieu's pre-kickoff hypotheses, to validate with your team.</p>
+    </div>
+
+
+  </div>
+
+  <!-- 07 WHAT WE NEED -->
+  <div class="section" id="s07">
+    <div style="font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Getting Started</div>
+    <h2 class="section-title">What We Need From You</h2>
+    <p class="section-intro">We've done the research. A few inputs from you sharpen it — most confirmed on the kickoff call.</p>
+
+    <table class="data-table" style="margin-bottom:36px;">
+      <thead><tr><th>What we need</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Named target account list</strong>: your current priority UK FSI accounts, even rough</td><td>Vieu's pre-kickoff mapping is strongest when built against accounts you already care about</td></tr>
+        <tr><td><strong>Existing UK FSI customers</strong> of NiCE and/or Pindrop</td><td>Lets us start with expansion accounts and spot look-alike opportunities</td></tr>
+        <tr><td><strong>LinkedIn CSV</strong> (each team member at NiCE and Pindrop)</td><td>Mapping your team's full connection graph lets Vieu surface warm paths far more accurately</td></tr>
+      </tbody>
+    </table>
+
+    <div style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); margin-top:36px; margin-bottom:16px;">Important Links</div>
+    <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--rule); border-radius:8px; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:200px 1fr auto; align-items:center; padding:16px 20px; background:var(--white); border-bottom:1px solid var(--rule); gap:16px;">
+        <div style="font-size:13px; font-weight:600; color:var(--ink);">Vieu Platform Login</div>
+        <div style="font-size:13px; color:var(--ink-soft);">Access your account, run searches, and activate warm paths</div>
+        <a href="https://www.vieu.com/login" target="_blank" style="font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); border:1.5px solid var(--accent); border-radius:4px; padding:6px 14px; text-decoration:none; white-space:nowrap;">Log In &rarr;</a>
+      </div>
+      <div style="display:grid; grid-template-columns:200px 1fr; align-items:start; padding:20px 20px; background:var(--paper); gap:16px;">
+        <div style="font-size:13px; font-weight:600; color:var(--ink); padding-top:2px;">Upload LinkedIn CSV</div>
+        <div>
+          <div style="font-size:13px; color:var(--ink-soft); margin-bottom:14px;">Adding your LinkedIn connections expands the warm paths Vieu can surface. Each team member across both companies should complete these steps.</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;"><span style="flex-shrink:0; width:22px; height:22px; background:var(--accent-lt); color:var(--accent); border-radius:4px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;">1</span><span style="font-size:13px; color:var(--ink-mid); line-height:1.55;">Go to <strong>linkedin.com/mypreferences/d/download-my-data</strong></span></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><span style="flex-shrink:0; width:22px; height:22px; background:var(--accent-lt); color:var(--accent); border-radius:4px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;">2</span><span style="font-size:13px; color:var(--ink-mid); line-height:1.55;">Select <strong>"Download larger data archive"</strong>, then click <strong>Request archive</strong></span></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><span style="flex-shrink:0; width:22px; height:22px; background:var(--accent-lt); color:var(--accent); border-radius:4px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;">3</span><span style="font-size:13px; color:var(--ink-mid); line-height:1.55;">LinkedIn emails a download link to your personal email within a few hours (sometimes as one or two downloads)</span></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><span style="flex-shrink:0; width:22px; height:22px; background:var(--accent-lt); color:var(--accent); border-radius:4px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;">4</span><span style="font-size:13px; color:var(--ink-mid); line-height:1.55;">Download the <strong>.zip</strong> file(s) — the links expire after <strong>3 days</strong></span></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><span style="flex-shrink:0; width:22px; height:22px; background:var(--accent-lt); color:var(--accent); border-radius:4px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;">5</span><span style="font-size:13px; color:var(--ink-mid); line-height:1.55;">Open the archive and export only <strong>Connections.csv</strong> — do not share the full .zip, it contains personal information</span></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><span style="flex-shrink:0; width:22px; height:22px; background:var(--accent-lt); color:var(--accent); border-radius:4px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;">6</span><span style="font-size:13px; color:var(--ink-mid); line-height:1.55;">Upload <strong>Connections.csv</strong> using your Vieu link below</span></div>
+          </div>
+          <a href="https://www.vieu.com/boost-network?t=pindrop-1wcM3yVY4n288LQYNqbDR" target="_blank" style="display:inline-block; margin-top:16px; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:var(--accent); border-radius:4px; padding:9px 18px; text-decoration:none;">Upload Connections.csv &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-left">
+      <strong>NiCE + Pindrop GTM Strategy Brief</strong><br>
+      Prepared by Vieu · October 2026 · Confidential<br>
+      Contact: bjain@vieu.com · Built on 9B Executive Relationships
+    </div>
+    <div class="footer-vieu">vieu</div>
+  </div>
+
+</div>
+</body>
+</html>
